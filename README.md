@@ -45,3 +45,38 @@ All input data is public:
 - **Scientific documentation**: clear, beginner-accessible technical writing translating complex genomics concepts
 
 ## Repository structure
+
+    ├── Snakefile                              # Single-sample pipeline rules
+    ├── Snakefile_multi                        # Multi-sample scaled pipeline
+    ├── config / config_multi                  # Pipeline configuration files
+    ├── Dockerfile                              # Container build specification
+    ├── environment                             # Conda environment definition
+    ├── cancer_genomics_pipeline_report.ipynb   # Full documented walkthrough
+    └── results/                                # Final VCFs, coverage tables, VAF/TMB summaries
+
+
+## Environment & reproducibility notes
+
+This pipeline was developed and executed using WSL2 with a Conda (Bioconda) environment, as the specialized tools (BWA, Samtools, GATK4, Snakemake) require a Linux environment. The included `Dockerfile` and `environment.yml` define the exact reproducible environment; due to local hardware constraints, the Docker image build/run was validated conceptually and documented in detail rather than executed on this machine, but the container is designed to run identically on any system with Docker installed.
+
+## How to run
+
+```bash
+# Create environment
+conda create -y -n cancergenomics -c conda-forge -c bioconda \
+  python=3.10 bwa samtools htslib gatk4 snakemake-minimal picard fastqc mosdepth pandas matplotlib
+conda activate cancergenomics
+
+# Run pipeline
+snakemake --cores 4
+
+# Or via Docker (recommended for full reproducibility)
+docker build -t cancer-genomics-pipeline .
+docker run -v $(pwd)/results:/app/results cancer-genomics-pipeline
+```
+
+
+
+
+
+
