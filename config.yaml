@@ -1,0 +1,21 @@
+# Settings for the single-pair Snakefile (HCC1954, from FASTQ to filtered VCF).
+reference: "hg38_v0_Homo_sapiens_assembly38.fasta"
+gnomad: "af-only-gnomad.hg38.vcf/af-only-gnomad.hg38.vcf.gz"
+pon: "1000g_pon.hg38.vcf/1000g_pon.hg38.vcf.gz"
+common_biallelic: "small_exac_common_3.hg38.vcf/small_exac_common_3.hg38.vcf.gz"
+
+# Java memory cap for Mutect2. Left unset, Java can guess it is allowed to use
+# more memory than is actually available inside a WSL2 virtual machine, which
+# gets the process killed (exit code 137). Lower this (e.g. "-Xmx3g") if that
+# still happens; raise it if you have RAM to spare.
+mutect_mem: "-Xmx4g"
+pairhmm_threads: 2
+
+tumor_sample: "HCC1954T"
+normal_sample: "HCC1954N"
+pair_name: "HCC1954"
+
+# The doubly nested folders that hold each sample's interleaved read-RA_* files.
+samples_fastq:
+  HCC1954T: "HCC1954T_WES_210_fastqs/HCC1954T_WES_fastqs"
+  HCC1954N: "HCC1954N_WES_fastqs/HCC1954N_WES_fastqs"

@@ -1,0 +1,27 @@
+# Settings for the scaled Snakefile that processes BOTH pairs.
+reference: "hg38_v0_Homo_sapiens_assembly38.fasta"
+gnomad: "af-only-gnomad.hg38.vcf/af-only-gnomad.hg38.vcf.gz"
+pon: "1000g_pon.hg38.vcf/1000g_pon.hg38.vcf.gz"
+common_biallelic: "small_exac_common_3.hg38.vcf/small_exac_common_3.hg38.vcf.gz"
+
+# Java memory cap for Mutect2 (see the note in config.yaml for why this exists).
+mutect_mem: "-Xmx4g"
+pairhmm_threads: 2
+
+# Interleaved read folders, needed only for pairs that start from FASTQ.
+samples_fastq:
+  HCC1954T: "HCC1954T_WES_210_fastqs/HCC1954T_WES_fastqs"
+  HCC1954N: "HCC1954N_WES_fastqs/HCC1954N_WES_fastqs"
+
+# One block per tumor/normal pair. "start" tells the workflow where each pair begins.
+pairs:
+  HCC1143:
+    tumor: "HCC1143_tumor"      # the sample name stored inside hcc1143_T_clean.bam
+    normal: "HCC1143_normal"    # the sample name stored inside hcc1143_N_clean.bam
+    start: "bam"                # already aligned: skip alignment
+    tumor_bam: "hcc1143_T_clean.bam"
+    normal_bam: "hcc1143_N_clean.bam"
+  HCC1954:
+    tumor: "HCC1954T"
+    normal: "HCC1954N"
+    start: "fastq"              # raw reads: run the full alignment first
