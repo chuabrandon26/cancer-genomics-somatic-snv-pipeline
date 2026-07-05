@@ -1,0 +1,16 @@
+name: cancer_genomics
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.10
+  - bwa
+  - samtools
+  - htslib
+  - gatk4
+  - snakemake-minimal
+  - picard
+  - fastqc
+  - mosdepth
+  - pandas
+  - matplotlib
