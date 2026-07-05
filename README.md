@@ -4,17 +4,16 @@ An automated, containerized bioinformatics pipeline for detecting cancer-specifi
 
 ## Overview
 
-Cancer is driven by somatic mutations — DNA changes present only in tumor cells, not in the patient's healthy tissue. This project identifies those mutations by comparing tumor and matched-normal whole-exome sequencing data, using an industry-standard workflow: quality control, alignment, duplicate marking, and somatic variant calling with GATK Mutect2. The pipeline is fully automated with Snakemake and packaged in Docker for reproducibility across any machine.
+Cancer is driven by somatic mutations, DNA changes present only in tumor cells, not in the patient's healthy tissue. This project identifies those mutations by comparing tumor and matched-normal whole-exome sequencing data, using an industry-standard workflow: quality control, alignment, duplicate marking, and somatic variant calling with GATK Mutect2. The pipeline is fully automated with Snakemake and packaged in Docker for reproducibility across any machine.
 
 The project demonstrates two complementary workflows:
 
-- **Project 1 — Automated Somatic SNV Pipeline**: Raw FASTQ → aligned BAM → filtered somatic VCF, using BWA-MEM, Samtools, and GATK Mutect2, orchestrated end-to-end with Snakemake.
-- **Project 2 — Containerized Multi-Sample QC Engine**: Scales the pipeline to multiple tumor/normal pairs and computes clinically relevant metrics — Variant Allele Frequency (VAF), Tumor Mutational Burden (TMB), and target exon coverage depth — packaged in a Docker container for one-command reproducibility.
+- **Project 1: Automated Somatic SNV Pipeline**: Raw FASTQ → aligned BAM → filtered somatic VCF, using BWA-MEM, Samtools, and GATK Mutect2, orchestrated end-to-end with Snakemake.
+- **Project 2: Containerized Multi-Sample QC Engine**: Scales the pipeline to multiple tumor/normal pairs and computes clinically relevant metrics: Variant Allele Frequency (VAF), Tumor Mutational Burden (TMB), and target exon coverage depth — packaged in a Docker container for one-command reproducibility.
 
 ## Goal
 
-To build a reproducible, portfolio-quality cancer genomics workflow that mirrors real precision-oncology pipelines used in clinical and research settings, while documenting every step in plain language for transparency and learning.
-
+To build a reproducible cancer genomics workflow that mirrors real precision-oncology pipelines used in clinical and research settings.
 ## Data sources
 
 All input data is public:
