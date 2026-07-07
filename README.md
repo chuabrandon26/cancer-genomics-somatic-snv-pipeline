@@ -1,6 +1,7 @@
 # Cancer Genomics Somatic SNV Pipeline
 
 An automated, containerized bioinformatics pipeline for detecting cancer-specific (somatic) mutations from paired tumor–normal DNA sequencing data, following GATK Best Practices.
+This project uses datasets from Breast Cancer. Specifically,  two tumor/normal pairs of the HCC1143 and HCC1954 cell lines, which are well-known breast cancer cell lines
 
 ## Overview
 
